@@ -7,13 +7,13 @@ environment:
   sdk: ^3.5.0
 
 dependencies:
-  bloc: ^8.1.4
+  bloc: ^9.0.0
   cloud_firestore: ^5.6.5
   firebase_auth: ^5.5.1
   firebase_core: ^3.12.1
   flutter:
     sdk: flutter
-  flutter_bloc: ^8.1.6
+  flutter_bloc: ^9.0.0
   flutter_localizations:
     sdk: flutter
   geolocator: ^13.0.2
@@ -21,7 +21,7 @@ dependencies:
   intl: ^0.19.0
 
 dev_dependencies:
-  bloc_test: ^9.1.7
+  bloc_test: ^10.0.0
   flutter_test:
     sdk: flutter
   mocktail: ^1.0.4
