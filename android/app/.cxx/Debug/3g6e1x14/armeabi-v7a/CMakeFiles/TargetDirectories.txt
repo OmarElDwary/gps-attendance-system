@@ -1,0 +1,2 @@
+C:/Users/amico/Desktop/graduation_project/gps_attendance_system/android/app/.cxx/Debug/3g6e1x14/armeabi-v7a/CMakeFiles/edit_cache.dir
+C:/Users/amico/Desktop/graduation_project/gps_attendance_system/android/app/.cxx/Debug/3g6e1x14/armeabi-v7a/CMakeFiles/rebuild_cache.dir

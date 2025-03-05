@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:gps_attendance_system/core/app_routes.dart';
 import 'package:gps_attendance_system/core/themes/app_theme.dart';
 import 'package:gps_attendance_system/l10n/l10n.dart';
-import 'package:gps_attendance_system/presentaion/screens/admin_dashboard/admin_home.dart';
-import 'package:gps_attendance_system/presentaion/screens/admin_dashboard/employess_page.dart';
-import 'package:gps_attendance_system/presentaion/screens/admin_dashboard/geofence_page.dart';
-import 'package:gps_attendance_system/presentaion/screens/admin_dashboard/managers_page.dart';
-import 'package:gps_attendance_system/presentaion/screens/admin_dashboard/settings_page.dart';
+import 'package:gps_attendance_system/presentaion/screens/leaves_screen/leaves_screen.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -18,23 +13,7 @@ class App extends StatelessWidget {
       theme: lightTheme,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      initialRoute: AppRoutes.adminHome,
-      onGenerateRoute: (RouteSettings settings) {
-        switch (settings.name) {
-          case AppRoutes.adminHome:
-            return MaterialPageRoute(builder: (context) => AdminHome());
-          case AppRoutes.employees:
-            return MaterialPageRoute(builder: (context) => EmployeesPage());
-          case AppRoutes.managers:
-            return MaterialPageRoute(builder: (context) => ManagersPage());
-          case AppRoutes.geofence:
-            return MaterialPageRoute(builder: (context) => GeofencePage());
-          case AppRoutes.settings:
-            return MaterialPageRoute(builder: (context) => SettingsPage());
-          default:
-            return MaterialPageRoute(builder: (context) => AdminHome());
-        }
-      },
+      home: const LeavesScreen(),
     );
   }
 }
