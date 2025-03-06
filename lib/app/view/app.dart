@@ -1,23 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gps_attendance_system/app_navigator.dart';
+import 'package:gps_attendance_system/blocs/attendance/attendance_bloc.dart';
+import 'package:gps_attendance_system/blocs/auth/auth_bloc.dart';
+import 'package:gps_attendance_system/blocs/auth/auth_event.dart';
 import 'package:gps_attendance_system/l10n/l10n.dart';
-import 'package:gps_attendance_system/presentation/screens/signup_page.dart';
+import 'package:gps_attendance_system/repositories/attendance_repository.dart';
 
 class App extends StatelessWidget {
-  const App({super.key});
+  App({super.key});
+
+  final AttendanceRepository attendanceRepository = AttendanceRepository();
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        appBarTheme: AppBarTheme(
-          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<AuthBloc>(
+          create: (_) => AuthBloc()..add(AppStarted()),
         ),
-        useMaterial3: true,
+        BlocProvider<AttendanceBloc>(
+          create: (_) =>
+              AttendanceBloc(attendanceRepository: attendanceRepository),
+        ),
+      ],
+      child: const MaterialApp(
+        debugShowCheckedModeBanner: false,
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
+        home: AppNavigator(),
       ),
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
-      supportedLocales: AppLocalizations.supportedLocales,
-      home: const SignUpPage(),
     );
   }
 }

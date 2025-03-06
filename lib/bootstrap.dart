@@ -1,10 +1,9 @@
 import 'dart:async';
 import 'dart:developer';
-
 import 'package:bloc/bloc.dart';
-import 'package:flutter/widgets.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
+import 'package:flutter/widgets.dart';
+import 'package:gps_attendance_system/firebase_options.dart';
 
 class AppBlocObserver extends BlocObserver {
   const AppBlocObserver();

@@ -9,6 +9,15 @@
 	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+    <string>This app requires access to your location when in use for attendance tracking.</string>
+    <key>NSLocationAlwaysUsageDescription</key>
+    <string>This app requires access to your location even in the background to accurately record attendance.</string>
+    <key>NSLocationTemporaryUsageDescriptionDictionary</key>
+    <dict>
+      <key>YourPurposeKey</key>
+      <string>This app requires temporary access to precise location for better accuracy.</string>
+    </dict>
 	<key>CFBundleDisplayName</key>
 	<string>$(FLAVOR_APP_NAME)</string>
 	<key>CFBundleExecutable</key>

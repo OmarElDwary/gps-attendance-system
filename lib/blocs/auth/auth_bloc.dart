@@ -8,7 +8,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   late final StreamSubscription<User?> _authSubscription;
 
   AuthBloc() : super(AuthInitial()) {
-    // Listen for changes in Firebase Auth's state.
     _authSubscription = FirebaseAuth.instance.authStateChanges().listen((user) {
       if (user != null) {
         add(LoggedIn());
@@ -16,8 +15,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         add(LoggedOut());
       }
     });
-
-    // Define event handlers.
     on<AppStarted>(_onAppStarted);
     on<LoggedIn>(_onLoggedIn);
     on<LoggedOut>(_onLoggedOut);
