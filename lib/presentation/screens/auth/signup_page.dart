@@ -2,10 +2,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gps_attendance_system/core/models/user_model.dart';
 import 'package:gps_attendance_system/core/services/user_services.dart';
-import 'package:gps_attendance_system/presentaion/animation/fade.dart';
-import 'package:gps_attendance_system/presentaion/screens/auth/login_page.dart';
-import 'package:gps_attendance_system/presentaion/widgets/snakbar_widget.dart';
-import 'package:gps_attendance_system/presentaion/widgets/text_form_field.dart';
+import 'package:gps_attendance_system/presentation/animation/fade.dart';
+import 'package:gps_attendance_system/presentation/screens/auth/login_page.dart';
+import 'package:gps_attendance_system/presentation/widgets/snakbar_widget.dart';
+import 'package:gps_attendance_system/presentation/widgets/text_form_field.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gps_attendance_system/core/utils/custom_calendar_timeline.dart';
-import 'package:gps_attendance_system/presentaion/screens/admin_dashboard/widgets/search_container.dart';
-import 'package:gps_attendance_system/presentaion/screens/admin_dashboard/widgets/users_list.dart';
+import 'package:gps_attendance_system/presentation/screens/admin_dashboard/widgets/search_container.dart';
+import 'package:gps_attendance_system/presentation/screens/admin_dashboard/widgets/users_list.dart';
 
 class EmployeesPage extends StatefulWidget {
   const EmployeesPage({super.key});

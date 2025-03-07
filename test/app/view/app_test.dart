@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:gps_attendance_system/app/app.dart';
-import 'package:gps_attendance_system/presentaion/screens/admin_dashboard/admin_home.dart';
+import 'package:gps_attendance_system/presentation/screens/admin_dashboard/admin_home.dart';
 
 void main() {
   group('App', () {

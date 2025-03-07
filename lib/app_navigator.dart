@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gps_attendance_system/blocs/auth/auth_bloc.dart';
 import 'package:gps_attendance_system/blocs/auth/auth_state.dart';
-import 'package:gps_attendance_system/presentaion/screens/auth/signup_page.dart';
-import 'package:gps_attendance_system/presentaion/screens/home/check_in.dart';
+import 'package:gps_attendance_system/presentation/screens/auth/login_page.dart';
+import 'package:gps_attendance_system/presentation/screens/home/check_in.dart';
 
 class AppNavigator extends StatelessWidget {
   const AppNavigator({super.key});
@@ -15,7 +15,7 @@ class AppNavigator extends StatelessWidget {
         if (state is Authenticated) {
           return const CheckIn();
         } else if (state is Unauthenticated) {
-          return const SignUpPage();
+          return const LoginPage();
         }
         return const Scaffold(
           body: Center(child: CircularProgressIndicator()),

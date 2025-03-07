@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gps_attendance_system/core/themes/app_colors.dart';
-import 'package:gps_attendance_system/presentaion/screens/admin_dashboard/managers_page.dart';
-import 'package:gps_attendance_system/presentaion/screens/admin_dashboard/mangers_details_page.dart';
-import 'package:gps_attendance_system/presentaion/screens/admin_dashboard/user_details_page.dart';
-import 'package:gps_attendance_system/presentaion/screens/admin_dashboard/widgets/custom_list_tile.dart';
+import 'package:gps_attendance_system/presentation/screens/admin_dashboard/mangers_details_page.dart';
+import 'package:gps_attendance_system/presentation/screens/admin_dashboard/widgets/custom_list_tile.dart';
 
 class ManagersList extends StatelessWidget {
   const ManagersList({
