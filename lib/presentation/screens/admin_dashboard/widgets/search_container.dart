@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:gps_attendance_system/core/themes/app_colors.dart';
 
 class SearchContainer extends StatelessWidget {
-  final TextEditingController controller;
-  final Function(String) onSearch;
-
   const SearchContainer(
-      {super.key, required this.controller, required this.onSearch});
+      {required this.controller, required this.onSearch, super.key});
+
+  final TextEditingController controller;
+  final void Function(String) onSearch;
 
   @override
   Widget build(BuildContext context) {
