@@ -1,16 +1,22 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:uuid/uuid.dart';
 import 'package:gps_attendance_system/core/themes/app_colors.dart';
 import 'package:gps_attendance_system/presentaion/screens/admin_dashboard/widgets/TexFeild_Custom.dart';
-import 'package:intl/intl.dart';
 
 class ApplyLeaveScreen extends StatefulWidget {
-  const ApplyLeaveScreen({super.key});
+  final String userId;
+
+  const ApplyLeaveScreen({Key? key, required this.userId}) : super(key: key);
 
   @override
   _ApplyLeaveScreenState createState() => _ApplyLeaveScreenState();
 }
 
 class _ApplyLeaveScreenState extends State<ApplyLeaveScreen> {
+  final _formKey = GlobalKey<FormState>();
   final TextEditingController titleController = TextEditingController();
   final TextEditingController contactController = TextEditingController();
   final TextEditingController startDateController = TextEditingController();
@@ -33,6 +39,52 @@ class _ApplyLeaveScreenState extends State<ApplyLeaveScreen> {
     }
   }
 
+  void _applyLeave() async {
+    if (_formKey.currentState!.validate() &&
+        selectedLeaveType != null &&
+        startDateController.text.isNotEmpty &&
+        endDateController.text.isNotEmpty) {
+      try {
+        var uuid = Uuid().v4();
+        FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+        await firestore.collection('leaves').doc(uuid).set({
+          'id': uuid,
+          'title': titleController.text,
+          'leaveType': selectedLeaveType!,
+          'contactNumber': contactController.text,
+          'startDate': Timestamp.fromDate(DateTime.parse(startDateController.text)),
+          'endDate': Timestamp.fromDate(DateTime.parse(endDateController.text)),
+          'reason': reasonController.text,
+          'userId':FirebaseAuth.instance.currentUser?.uid ?? 'unknown',
+
+          'createdAt': FieldValue.serverTimestamp(),
+        });
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Leave applied successfully!')),
+        );
+
+        titleController.clear();
+        contactController.clear();
+        startDateController.clear();
+        endDateController.clear();
+        reasonController.clear();
+        setState(() {
+          selectedLeaveType = null;
+        });
+      } catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Error: ${e.toString()}')),
+        );
+      }
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Please fill all fields')),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,73 +103,76 @@ class _ApplyLeaveScreenState extends State<ApplyLeaveScreen> {
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Center(
           child: SingleChildScrollView(
-            child: Column(
-              children: [
-                CustomTextFormField(
-                  labelText: 'Title',
-                  hintText: 'Enter Title',
-                  controller: titleController,
-                ),
-                CustomTextFormField(
-                  labelText: 'Leave Type',
-                  hintText: 'Enter Leave Type',
-                  isDropdown: true,
-                  dropdownItems: const [
-                    'Sick Leave',
-                    'Casual Leave',
-                    'Annual Leave'
-                  ],
-                  onChanged: (value) =>
-                      setState(() => selectedLeaveType = value),
-                ),
-                CustomTextFormField(
-                  labelText: 'Contact Number',
-                  hintText: 'Enter Contact Number',
-                  keyboardType: TextInputType.phone,
-                  controller: contactController,
-                ),
-                CustomTextFormField(
-                  labelText: 'Start Date',
-                  hintText: 'Enter Start Date',
-                  controller: startDateController,
-                  isDateField: true,
-                  onDateTap: () => _selectDate(context, startDateController),
-                ),
-                CustomTextFormField(
-                  labelText: 'End Date',
-                  hintText: 'Enter End Date',
-                  controller: endDateController,
-                  isDateField: true,
-                  onDateTap: () => _selectDate(context, endDateController),
-                ),
-                CustomTextFormField(
-                  labelText: 'Reason for Leave',
-                  hintText: 'Enter Reason for Leave',
-                  controller: reasonController,
-                ),
-                const SizedBox(height: 20),
-                SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.primary,
-                      padding: const EdgeInsets.symmetric(vertical: 16),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  CustomTextFormField(
+                    labelText: 'Title',
+                    hintText: 'Enter Title',
+                    controller: titleController,
+                  ),
+                  CustomTextFormField(
+                    labelText: 'Leave Type',
+                    hintText: 'Select Leave Type',
+                    isDropdown: true,
+                    dropdownItems: const [
+                      'Sick Leave',
+                      'Casual Leave',
+                      'Annual Leave'
+                    ],
+                    onChanged: (value) =>
+                        setState(() => selectedLeaveType = value),
+                  ),
+                  CustomTextFormField(
+                    labelText: 'Contact Number',
+                    hintText: 'Enter Contact Number',
+                    keyboardType: TextInputType.phone,
+                    controller: contactController,
+                  ),
+                  CustomTextFormField(
+                    labelText: 'Start Date',
+                    hintText: 'Select Start Date',
+                    controller: startDateController,
+                    isDateField: true,
+                    onDateTap: () => _selectDate(context, startDateController),
+                  ),
+                  CustomTextFormField(
+                    labelText: 'End Date',
+                    hintText: 'Select End Date',
+                    controller: endDateController,
+                    isDateField: true,
+                    onDateTap: () => _selectDate(context, endDateController),
+                  ),
+                  CustomTextFormField(
+                    labelText: 'Reason for Leave',
+                    hintText: 'Enter Reason',
+                    controller: reasonController,
+                  ),
+                  const SizedBox(height: 20),
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: _applyLeave,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.primary,
+                        padding: const EdgeInsets.symmetric(vertical: 16),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
                       ),
-                    ),
-                    child: const Text(
-                      'Apply Leave',
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: AppColors.whiteColor,
+                      child: const Text(
+                        'Apply Leave',
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: AppColors.whiteColor,
+                        ),
                       ),
                     ),
                   ),
-                ),
-                const SizedBox(height: 20),
-              ],
+                  const SizedBox(height: 20),
+                ],
+              ),
             ),
           ),
         ),
