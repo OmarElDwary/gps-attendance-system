@@ -99,15 +99,6 @@ class AuthCubit extends Cubit<AuthStates> {
     emit(Unauthenticated());
   }
 
-// change password visibility (login)
-  void changeLoginPasswordVisibility() {
-    loginPasswordSecure = !loginPasswordSecure;
-    loginIcon = loginPasswordSecure
-        ? Icons.visibility_outlined
-        : Icons.visibility_off_outlined;
-    emit(ChangePasswordVisibility());
-  }
-
   @override
   Future<void> close() {
     authSubscription?.cancel();
