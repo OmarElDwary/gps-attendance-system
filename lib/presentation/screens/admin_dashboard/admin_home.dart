@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:gps_attendance_system/blocs/auth/auth_cubit.dart';
 import 'package:gps_attendance_system/core/app_routes.dart';
 import 'package:gps_attendance_system/core/app_strings.dart';
@@ -16,9 +17,11 @@ DateFormat format = DateFormat('EEE, dd MMM');
 String formattedDate = format.format(date);
 
 class AdminHome extends StatelessWidget {
+
   AdminHome({this.admin, super.key});
 
   final UserModel? admin;
+
   final TextEditingController searchController = TextEditingController();
 
   final List<String> containerTitles = [
@@ -38,6 +41,7 @@ class AdminHome extends StatelessWidget {
     AppStrings.settings,
     AppStrings.logout,
   ];
+
 
   //--------- Get Admin data from firebase //
   //------------ Get employees list from firebase //
@@ -66,6 +70,7 @@ class AdminHome extends StatelessWidget {
       role: Role.employee,
       position: 'Software Engineer',
     ),
+
   ];
   final List<IconData> headerIcons = [
     Icons.dashboard,
@@ -126,6 +131,7 @@ class AdminHome extends StatelessWidget {
                           style: const TextStyle(color: Colors.grey),
                         ),
                         // Admin name
+
                         Text(
                           'Hello, ${admin?.name ?? "Admin"}',
                           textAlign: TextAlign.center,
@@ -160,6 +166,7 @@ class AdminHome extends StatelessWidget {
                     if (index == 0) {
                       Navigator.pop(context);
                     } else if (index == 1) {
+
                       Navigator.pushNamed(
                         // we will send the employees list from firebase
                         // to the employees page
@@ -175,6 +182,7 @@ class AdminHome extends StatelessWidget {
                         // to the mangers page
                         arguments: dummyUsersObjects,
                       );
+
                     } else if (index == 3) {
                       Navigator.pushNamed(context, AppRoutes.geofence);
                     } else if (index == 4) {
@@ -185,12 +193,14 @@ class AdminHome extends StatelessWidget {
                       Navigator.pushNamed(context, AppRoutes.settings);
                     } else {
                       // log out logic here
+
                       AuthCubit.get(context).logout();
                       Navigator.pushNamedAndRemoveUntil(
                         context,
                         AppRoutes.login,
                         (_) => false,
                       );
+
                     }
                   },
                 );
@@ -249,6 +259,7 @@ class AdminHome extends StatelessWidget {
                 // View all button
                 TextButton(
                   onPressed: () {
+
                     Navigator.pushNamed(
                       // we will send the employees list from firebase
                       // to the employees page
@@ -256,6 +267,7 @@ class AdminHome extends StatelessWidget {
                       AppRoutes.employees,
                       arguments: dummyUsersObjects,
                     );
+
                   },
                   style: TextButton.styleFrom(
                     foregroundColor: AppColors.primary,
@@ -275,9 +287,11 @@ class AdminHome extends StatelessWidget {
             // Employee list view
             // Show half of the employees list
             UsersList(
+
               users: dummyUsersObjects.sublist(
                 0,
                 (dummyUsersObjects.length * 0.5).round(),
+
               ),
             ),
           ],

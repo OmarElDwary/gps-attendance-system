@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+
 import 'package:gps_attendance_system/core/themes/app_colors.dart';
 
 class TextFormFieldWidget extends StatelessWidget {
   const TextFormFieldWidget({
+
     required this.labelText,
     required this.controller,
     required this.validator,
     required this.prefixIcon,
+
     super.key,
     this.suffixIcon,
     this.keyboardType,
@@ -48,6 +51,7 @@ class TextFormFieldWidget extends StatelessWidget {
                   ),
                 )
               : null,
+
           contentPadding: const EdgeInsets.symmetric(
             vertical: 10,
             horizontal: 10,

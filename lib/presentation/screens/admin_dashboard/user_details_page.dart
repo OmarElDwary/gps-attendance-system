@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:gps_attendance_system/core/models/user_model.dart';
 import 'package:gps_attendance_system/core/utils/attendance_helper.dart';
 import 'package:gps_attendance_system/core/utils/custom_calendar_timeline.dart';
@@ -16,6 +17,7 @@ class UserDetailsPage extends StatefulWidget {
 class _UserDetailsPageState extends State<UserDetailsPage> {
   // dummy attendance records
   //-- get from database (collection attendance)
+
   final List<Map<String, String>> attendanceRecords = [
     {'date': '2023-04-10', 'checkIn': '10:12 am', 'checkOut': '07:00 pm'},
     {'date': '2023-04-11', 'checkIn': '12:00 am', 'checkOut': '07:10 pm'},
@@ -23,13 +25,16 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
     {'date': '2023-04-13', 'checkIn': '09:12 am', 'checkOut': '06:45 pm'},
     {'date': '2023-04-14', 'checkIn': '10:30 am', 'checkOut': '07:00 pm'},
   ];
+
   DateTime selectedDate = DateTime.now();
+
 
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
+
       appBar: AppBar(title: Text('${widget.userModel.name} Attendance')),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
@@ -98,6 +103,7 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
               ),
             ],
           ),
+
         ),
       ),
     );
