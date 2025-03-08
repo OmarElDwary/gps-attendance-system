@@ -1,7 +1,31 @@
 {
-    "@@locale": "en",
-    "counterAppBarTitle": "Counter",
-    "@counterAppBarTitle": {
-        "description": "Text shown in the AppBar of the Counter Page"
-    }
+  "@@locale": "en",
+  "appTitle": "GPS Attendance System",
+  "welcomeMessage": "Welcome to our app!",
+  "settings": "Settings",
+  "language": "Language",
+  "english": "English",
+  "arabic": "Arabic",
+  "theme": "Theme",
+  "darkTheme": "Dark Theme",
+  "lightTheme": "Light Theme",
+  "title": "Title",
+  "leaveType": "Leave Type",
+  "sickLeave": "Sick Leave",
+  "casualLeave": "Casual Leave",
+  "annualLeave": "Annual Leave",
+  "contactNumber": "Contact Number",
+  "startDate": "Start Date",
+  "endDate": "End Date",
+  "reasonForLeave": "Reason For Leave",
+  "applyLeave": "Apply Leave",
+  "enterTitle": "Enter Title",
+  "selectLeaveType": "Select Leave Type",
+  "enterContactNumber": "Enter Contact Number",
+  "selectStartDate": "Select Start Date",
+  "selectEndDate": "Select End Date",
+  "enterReason": "Enter Reason",
+  "pleaseFillAllFields": "Please fill all fields",
+  "leaveAppliedSuccessfully": "Leave applied successfully!" ,
+  "submit" : "Submit"
 }

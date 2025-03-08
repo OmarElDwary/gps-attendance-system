@@ -93,7 +93,7 @@ class _LoginPageState extends State<LoginPage> {
                   child: ListView(
                     shrinkWrap: true,
                     children: [
-                      TextFormFieldWidget(
+                      CustomTextFormField(
                         labelText: 'Email',
                         keyboardType: TextInputType.emailAddress,
                         controller: _emailController,
@@ -101,7 +101,7 @@ class _LoginPageState extends State<LoginPage> {
                         prefixIcon: Icons.email,
                       ),
                       const SizedBox(height: 10),
-                      TextFormFieldWidget(
+                      CustomTextFormField(
                         labelText: 'Password',
                         obscureText: _passwordVisible,
                         controller: _passwordController,

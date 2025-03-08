@@ -125,14 +125,14 @@ class SignUpPageState extends State<SignUpPage> {
                   key: _formKey,
                   child: ListView(
                     children: [
-                      TextFormFieldWidget(
+                      CustomTextFormField(
                         labelText: 'Full Name',
                         controller: _fullNameController,
                         validator: _validateFullName,
                         prefixIcon: Icons.person,
                       ),
                       const SizedBox(height: 10),
-                      TextFormFieldWidget(
+                      CustomTextFormField(
                         labelText: 'Email',
                         keyboardType: TextInputType.emailAddress,
                         controller: _emailController,
@@ -140,7 +140,7 @@ class SignUpPageState extends State<SignUpPage> {
                         prefixIcon: Icons.email,
                       ),
                       const SizedBox(height: 10),
-                      TextFormFieldWidget(
+                      CustomTextFormField(
                         labelText: 'Password',
                         obscureText: _passwordVisible,
                         controller: _passwordController,
@@ -158,7 +158,7 @@ class SignUpPageState extends State<SignUpPage> {
                         ),
                       ),
                       const SizedBox(height: 10),
-                      TextFormFieldWidget(
+                      CustomTextFormField(
                         labelText: 'Confirm Password',
                         obscureText: _passwordVisible,
                         controller: _confirmPasswordController,

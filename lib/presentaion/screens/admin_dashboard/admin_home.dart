@@ -72,11 +72,13 @@ class AdminHome extends StatelessWidget {
           'Dashboard',
           style: TextStyle(
             fontWeight: FontWeight.normal,
+            color: AppColors.blackColor
           ),
         ),
       ),
       // Drawer
       drawer: Drawer(
+
         child: ListView(
           padding: EdgeInsets.zero,
           children: [

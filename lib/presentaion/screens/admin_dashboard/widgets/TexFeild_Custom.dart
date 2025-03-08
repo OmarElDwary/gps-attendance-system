@@ -36,7 +36,7 @@ class CustomTextFormField extends StatelessWidget {
         items: dropdownItems
             ?.map((item) => DropdownMenuItem(value: item, child: Text(item , style: TextStyle(fontWeight: FontWeight.bold),)))
             .toList(),
-        dropdownColor: AppColors.whiteColor,
+        dropdownColor: AppColors.primary,
         onChanged: onChanged,
       )
           : TextFormField(
@@ -55,12 +55,11 @@ class CustomTextFormField extends StatelessWidget {
   InputDecoration _buildInputDecoration({IconData? suffixIcon}) {
     return InputDecoration(
       labelText: labelText,
-      labelStyle: const TextStyle(fontWeight: FontWeight.bold, color:AppColors.blackColor),
+      labelStyle: const TextStyle(fontWeight: FontWeight.bold),
       hintText: hintText,
-      hintStyle: const TextStyle(color: AppColors.fifthColor),
-      border: OutlineInputBorder(borderRadius: BorderRadius.circular(10), borderSide: const BorderSide(color: AppColors.thirdMintGreen)),
-      enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(10), borderSide: const BorderSide(color: AppColors.thirdMintGreen)),
-      focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(10), borderSide: const BorderSide(color: AppColors.fifthColor)),
+      border: OutlineInputBorder(borderRadius: BorderRadius.circular(10), borderSide:  BorderSide(color: AppColors.thirdMintGreen)),
+      enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(10), borderSide:  BorderSide(color: AppColors.thirdMintGreen)),
+      focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(10), borderSide:  BorderSide(color: AppColors.fifthColor)),
       suffixIcon: suffixIcon != null ? Icon(suffixIcon, color: AppColors.fourthColor) : null,
     );
   }

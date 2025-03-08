@@ -1,10 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:gps_attendance_system/core/themes/app_colors.dart';
+import 'package:gps_attendance_system/l10n/l10n.dart';
+import 'package:gps_attendance_system/presentaion/screens/admin_dashboard/widgets/TexFeild_Custom.dart';
 import 'package:intl/intl.dart';
 import 'package:uuid/uuid.dart';
-import 'package:gps_attendance_system/core/themes/app_colors.dart';
-import 'package:gps_attendance_system/presentaion/screens/admin_dashboard/widgets/TexFeild_Custom.dart';
 
 class ApplyLeaveScreen extends StatefulWidget {
   final String userId;
@@ -56,13 +57,12 @@ class _ApplyLeaveScreenState extends State<ApplyLeaveScreen> {
           'startDate': Timestamp.fromDate(DateTime.parse(startDateController.text)),
           'endDate': Timestamp.fromDate(DateTime.parse(endDateController.text)),
           'reason': reasonController.text,
-          'userId':FirebaseAuth.instance.currentUser?.uid ?? 'unknown',
-
+          'userId': FirebaseAuth.instance.currentUser?.uid ?? 'unknown',
           'createdAt': FieldValue.serverTimestamp(),
         });
 
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Leave applied successfully!')),
+          SnackBar(content: Text(AppLocalizations.of(context)!.leaveAppliedSuccessfully)),
         );
 
         titleController.clear();
@@ -80,22 +80,24 @@ class _ApplyLeaveScreenState extends State<ApplyLeaveScreen> {
       }
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please fill all fields')),
+        SnackBar(content: Text(AppLocalizations.of(context)!.pleaseFillAllFields)),
       );
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Scaffold(
-      backgroundColor: AppColors.whiteColor,
       appBar: AppBar(
-        title: const Text('Apply Leave',
-            style: TextStyle(color: AppColors.whiteColor)),
+        title: Text(
+          AppLocalizations.of(context)!.applyLeave,
+        ),
         backgroundColor: AppColors.primary,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: AppColors.whiteColor),
+          icon: Icon(Icons.arrow_back, color: theme.colorScheme.onPrimary),
           onPressed: () => Navigator.pop(context),
         ),
       ),
@@ -108,45 +110,45 @@ class _ApplyLeaveScreenState extends State<ApplyLeaveScreen> {
               child: Column(
                 children: [
                   CustomTextFormField(
-                    labelText: 'Title',
-                    hintText: 'Enter Title',
+                    labelText: AppLocalizations.of(context)!.title,
+                    hintText: AppLocalizations.of(context)!.enterTitle,
                     controller: titleController,
                   ),
                   CustomTextFormField(
-                    labelText: 'Leave Type',
-                    hintText: 'Select Leave Type',
+                    labelText: AppLocalizations.of(context)!.leaveType,
+                    hintText: AppLocalizations.of(context)!.selectLeaveType,
                     isDropdown: true,
-                    dropdownItems: const [
-                      'Sick Leave',
-                      'Casual Leave',
-                      'Annual Leave'
+                    dropdownItems:
+                    [
+                      AppLocalizations.of(context)!.sickLeave,
+                      AppLocalizations.of(context)!.casualLeave,
+                      AppLocalizations.of(context)!.annualLeave
                     ],
-                    onChanged: (value) =>
-                        setState(() => selectedLeaveType = value),
+                    onChanged: (value) => setState(() => selectedLeaveType = value),
                   ),
                   CustomTextFormField(
-                    labelText: 'Contact Number',
-                    hintText: 'Enter Contact Number',
+                    labelText: AppLocalizations.of(context)!.contactNumber,
+                    hintText: AppLocalizations.of(context)!.enterContactNumber,
                     keyboardType: TextInputType.phone,
                     controller: contactController,
                   ),
                   CustomTextFormField(
-                    labelText: 'Start Date',
-                    hintText: 'Select Start Date',
+                    labelText: AppLocalizations.of(context)!.startDate,
+                    hintText: AppLocalizations.of(context)!.selectStartDate,
                     controller: startDateController,
                     isDateField: true,
                     onDateTap: () => _selectDate(context, startDateController),
                   ),
                   CustomTextFormField(
-                    labelText: 'End Date',
-                    hintText: 'Select End Date',
+                    labelText: AppLocalizations.of(context)!.endDate,
+                    hintText: AppLocalizations.of(context)!.selectEndDate,
                     controller: endDateController,
                     isDateField: true,
                     onDateTap: () => _selectDate(context, endDateController),
                   ),
                   CustomTextFormField(
-                    labelText: 'Reason for Leave',
-                    hintText: 'Enter Reason',
+                    labelText: AppLocalizations.of(context)!.reasonForLeave,
+                    hintText: AppLocalizations.of(context)!.enterReason,
                     controller: reasonController,
                   ),
                   const SizedBox(height: 20),
@@ -161,11 +163,11 @@ class _ApplyLeaveScreenState extends State<ApplyLeaveScreen> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
-                      child: const Text(
-                        'Apply Leave',
+                      child: Text(
+                        AppLocalizations.of(context)!.applyLeave,
                         style: TextStyle(
                           fontSize: 16,
-                          color: AppColors.whiteColor,
+                          color : AppColors.whiteColor
                         ),
                       ),
                     ),
