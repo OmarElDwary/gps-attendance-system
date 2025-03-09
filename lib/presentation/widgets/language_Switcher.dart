@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:gps_attendance_system/core/cubits/change_language_cubit.dart';
+import 'package:gps_attendance_system/blocs/language/change_language_cubit.dart';
 
 class LanguageSwitcher extends StatefulWidget {
   const LanguageSwitcher({super.key});

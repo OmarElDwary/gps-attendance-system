@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:gps_attendance_system/blocs/language/change_language_cubit.dart';
+import 'package:gps_attendance_system/blocs/language/change_language_state.dart';
 import 'package:gps_attendance_system/blocs/theme/theme_bloc.dart';
 import 'package:gps_attendance_system/blocs/theme/theme_state.dart';
 import 'package:gps_attendance_system/core/app_routes.dart';
-import 'package:gps_attendance_system/core/cubits/change_language_cubit.dart';
-import 'package:gps_attendance_system/core/cubits/change_language_state.dart';
 import 'package:gps_attendance_system/l10n/l10n.dart';
 import 'package:gps_attendance_system/presentation/screens/admin_dashboard/admin_home.dart';
 import 'package:gps_attendance_system/presentation/screens/admin_dashboard/employess_page.dart';
