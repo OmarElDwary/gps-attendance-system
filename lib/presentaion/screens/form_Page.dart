@@ -1,15 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import 'package:uuid/uuid.dart';
+import 'package:gps_attendance_system/core/models/leave_model.dart';
 import 'package:gps_attendance_system/core/themes/app_colors.dart';
 import 'package:gps_attendance_system/presentaion/screens/admin_dashboard/widgets/TexFeild_Custom.dart';
+import 'package:intl/intl.dart';
 
 class ApplyLeaveScreen extends StatefulWidget {
-  final String userId;
-
-  const ApplyLeaveScreen({Key? key, required this.userId}) : super(key: key);
+  const ApplyLeaveScreen({super.key});
 
   @override
   _ApplyLeaveScreenState createState() => _ApplyLeaveScreenState();
@@ -39,28 +37,30 @@ class _ApplyLeaveScreenState extends State<ApplyLeaveScreen> {
     }
   }
 
-  void _applyLeave() async {
-    if (_formKey.currentState!.validate() &&
-        selectedLeaveType != null &&
-        startDateController.text.isNotEmpty &&
-        endDateController.text.isNotEmpty) {
+  //--- Apply Leave Method ----//
+  Future<void> _applyLeave() async {
+    String? userId = FirebaseAuth.instance.currentUser?.uid;
+    if (_formKey.currentState!.validate() && selectedLeaveType != null) {
       try {
-        var uuid = Uuid().v4();
+        // var uuid = Uuid().v4();
         FirebaseFirestore firestore = FirebaseFirestore.instance;
-
-        await firestore.collection('leaves').doc(uuid).set({
-          'id': uuid,
-          'title': titleController.text,
-          'leaveType': selectedLeaveType!,
-          'contactNumber': contactController.text,
-          'startDate': Timestamp.fromDate(DateTime.parse(startDateController.text)),
-          'endDate': Timestamp.fromDate(DateTime.parse(endDateController.text)),
-          'reason': reasonController.text,
-          'userId':FirebaseAuth.instance.currentUser?.uid ?? 'unknown',
-
-          'createdAt': FieldValue.serverTimestamp(),
-        });
-
+        // Create a leave model
+        LeaveModel leaveModel = LeaveModel(
+          title: titleController.text,
+          leaveType: selectedLeaveType!,
+          contactNumber: contactController.text,
+          status: 'Pending',
+          startDate:
+              Timestamp.fromDate(DateTime.parse(startDateController.text)),
+          endDate: Timestamp.fromDate(DateTime.parse(endDateController.text)),
+          reason: reasonController.text,
+          userId: userId ?? 'unknown',
+        );
+        // Save the leave to the database
+        await firestore
+            .collection('leaves')
+            .doc(userId)
+            .set(leaveModel.toMap());
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Leave applied successfully!')),
         );
@@ -90,8 +90,10 @@ class _ApplyLeaveScreenState extends State<ApplyLeaveScreen> {
     return Scaffold(
       backgroundColor: AppColors.whiteColor,
       appBar: AppBar(
-        title: const Text('Apply Leave',
-            style: TextStyle(color: AppColors.whiteColor)),
+        title: const Text(
+          'Apply Leave',
+          style: TextStyle(color: AppColors.whiteColor),
+        ),
         backgroundColor: AppColors.primary,
         elevation: 0,
         leading: IconButton(
@@ -119,7 +121,7 @@ class _ApplyLeaveScreenState extends State<ApplyLeaveScreen> {
                     dropdownItems: const [
                       'Sick Leave',
                       'Casual Leave',
-                      'Annual Leave'
+                      'Annual Leave',
                     ],
                     onChanged: (value) =>
                         setState(() => selectedLeaveType = value),

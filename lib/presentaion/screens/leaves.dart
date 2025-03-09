@@ -16,7 +16,7 @@ class LeavesPage extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const ApplyLeaveScreen(userId: '',),
+                  builder: (context) => const ApplyLeaveScreen(),
                 ),
               );
             },
