@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gps_attendance_system/core/models/setting_manager.dart';
-import 'package:gps_attendance_system/presentaion/widgets/Factory%20Pattern.dart';
+import 'package:gps_attendance_system/presentation/widgets/Factory%20Pattern.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 
@@ -21,7 +21,7 @@ class _SettingsPageState extends State<SettingsPage> {
         title: Text(AppLocalizations.of(context)!.settings),
         leading: IconButton(
           onPressed: () => settingsManager.goToProfile(context),
-          icon: Icon(Icons.arrow_back_outlined),
+          icon: const Icon(Icons.arrow_back_outlined),
         ),
       ),
       body: Container(

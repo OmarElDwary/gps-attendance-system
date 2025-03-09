@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gps_attendance_system/presentaion/widgets/language_Switcher.dart';
-import 'package:gps_attendance_system/presentaion/widgets/theme_Switcher.dart';
+import 'package:gps_attendance_system/presentation/widgets/language_Switcher.dart';
+import 'package:gps_attendance_system/presentation/widgets/theme_Switcher.dart';
 
 class WidgetFactory {
   static Widget createWidget(String type) {
