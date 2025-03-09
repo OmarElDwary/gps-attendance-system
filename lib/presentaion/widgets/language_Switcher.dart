@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:gps_attendance_system/core/cubits/change_language_cubit.dart';
 
-
 class LanguageSwitcher extends StatefulWidget {
   const LanguageSwitcher({super.key});
 
@@ -35,7 +34,7 @@ class _LanguageSwitcherState extends State<LanguageSwitcher> {
             padding: const EdgeInsets.all(8.0),
             child: DropdownButtonHideUnderline(
               child: DropdownButton<String>(
-    dropdownColor: Theme.of(context).primaryColor,
+                dropdownColor: Theme.of(context).primaryColor,
                 value: context
                     .watch<ChangeLanguageCubit>()
                     .state
@@ -46,14 +45,14 @@ class _LanguageSwitcherState extends State<LanguageSwitcher> {
                     value: 'en',
                     child: Text(
                       AppLocalizations.of(context)!.english,
-                      style: TextStyle(fontSize: 16),
+                      style: const TextStyle(fontSize: 16),
                     ),
                   ),
                   DropdownMenuItem(
                     value: 'ar',
                     child: Text(
                       AppLocalizations.of(context)!.arabic,
-                      style: TextStyle(fontSize: 16),
+                      style: const TextStyle(fontSize: 16),
                     ),
                   ),
                 ],

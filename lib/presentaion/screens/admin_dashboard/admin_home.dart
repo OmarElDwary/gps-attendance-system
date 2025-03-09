@@ -203,6 +203,7 @@ class AdminHome extends StatelessWidget {
                   'Employees List',
                   style: TextStyle(
                     fontSize: 18,
+                    color: AppColors.primary,
                     fontWeight: FontWeight.w400,
                   ),
                 ),
