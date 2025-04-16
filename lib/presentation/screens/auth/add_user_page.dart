@@ -118,7 +118,7 @@ class AddUserPageState extends State<AddUserPage> {
                       validator: _validateFullName,
                       prefixIcon: Icons.person,
                     ),
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 5),
                     //----------- Email text field ----------//
                     TextFormFieldWidget(
                       labelText: AppLocalizations.of(context).email,
@@ -128,7 +128,7 @@ class AddUserPageState extends State<AddUserPage> {
                       validator: _validateEmail,
                       prefixIcon: Icons.email,
                     ),
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 5),
                     //----------- Password text field ----------//
                     TextFormFieldWidget(
                       keyboardType: TextInputType.visiblePassword,
@@ -147,7 +147,7 @@ class AddUserPageState extends State<AddUserPage> {
                           ? Icons.visibility_outlined
                           : Icons.visibility_off_outlined,
                     ),
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 5),
                     //----------- Confirm Password text field ----------//
                     TextFormFieldWidget(
                       keyboardType: TextInputType.visiblePassword,
@@ -176,7 +176,7 @@ class AddUserPageState extends State<AddUserPage> {
                       validator: _validatePhone,
                       prefixIcon: Icons.phone,
                     ),
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 5),
                     //----------- Position text field ----------//
                     TextFormFieldWidget(
                       labelText: AppLocalizations.of(context).position,
@@ -234,7 +234,6 @@ class AddUserPageState extends State<AddUserPage> {
                         Text(AppLocalizations.of(context).admin),
                       ],
                     ),
-                    const SizedBox(height: 10),
                     Padding(
                       padding: const EdgeInsetsDirectional.all(8),
                       child: Text(
@@ -267,7 +266,6 @@ class AddUserPageState extends State<AddUserPage> {
                         Text(AppLocalizations.of(context).female),
                       ],
                     ),
-                    const SizedBox(height: 20),
                     //----------- Add User Button ----------//
                     BlocBuilder<AuthCubit, AuthStates>(
                       builder: (context, state) {
