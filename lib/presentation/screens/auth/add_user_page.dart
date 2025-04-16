@@ -266,6 +266,7 @@ class AddUserPageState extends State<AddUserPage> {
                         Text(AppLocalizations.of(context).female),
                       ],
                     ),
+                    const SizedBox(height: 5,),
                     //----------- Add User Button ----------//
                     BlocBuilder<AuthCubit, AuthStates>(
                       builder: (context, state) {
